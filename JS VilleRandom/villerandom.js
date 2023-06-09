@@ -5,7 +5,7 @@ let blank;
 let tableVille ;
 
 for (i = 0; i < size; i++) {
-    tableRandom[i] = Math.floor(Math.random() * 10);
+    tableRandom[i] = Math.floor(Math.random() * size+1);
 }
 
 for (i = 0; i < size; i++) {

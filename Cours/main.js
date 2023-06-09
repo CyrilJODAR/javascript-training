@@ -48,53 +48,54 @@ const tabVille =[
 
 let resultObject;
 let resultObject2;
-
+let resultObject3;
+// BGGEST POPULATION
 let biggestNumber = tabVille[0].town.population;
 let biggestCity =tabVille[0];
-
 for(i=0;i<tabVille.length;i++){
     if(tabVille[i].town.population > biggestNumber ){
         biggestNumber = tabVille[i].town.population;
         biggestCity = tabVille[i];
     }
 }
-
+// VALUES SENT
 resultObject = `M. ${biggestCity.lastName} habite dans la plus grande ville qui est ${biggestCity.town.name} avec ${biggestCity.town.population}`;
 TextMainContainer.textContent = resultObject;
-
-
+// 
+// PERSON BIGGEST IMC
+// 
 let calculImc = tabVille[0].weight / (tabVille[0].size **2);
 let biggestImc = tabVille[0];
-
 for(i=0;i<tabVille.length;i++){
     if(calculImcFor(tabVille[i])> calculImc){
         calculImc = calculImcFor(tabVille[i]);
         biggestImc = tabVille[i];
     }
 }
-
+// VALUES SENT
 resultObject2 = `c'est ${biggestImc.firstName} qui a l'IMC la plus élevée : ${biggestImc.imc}`;
 TextMainContainer2.textContent += resultObject2;
-
+// FUNCTION IMC
 function calculImcFor(data){
     const imc = tabVille[i].weight / (tabVille[i].size **2)
     tabVille[i].imc = imc;
     return imc;
 }
-
+// 
+// BIGGEST POPULATION DENSITY
+// 
 let calculDensity = tabVille[0].town.population / tabVille[0].town.superficie;
 let biggestSuperficie = tabVille[0];
-
 for(i=0;i<tabVille.length;i++){
     if(calcDensity(tabVille[i])> calculDensity){
         calculDensity = calcDensity(tabVille[i]);
         biggestSuperficie = tabVille[i];
     }
 }
-
+// VALUES SENT
 resultObject3 = `la ville de ${biggestSuperficie.town.name} a une densité de ${biggestSuperficie.town.density} pers/km2`
 TextMainContainer3.textContent += resultObject3;
-
+// FUNCTION DENSITY
 function calcDensity(data){
     const density = tabVille[i].town.population / tabVille[i].town.superficie;
     tabVille[i].town.density = density

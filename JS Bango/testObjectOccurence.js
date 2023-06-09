@@ -16,3 +16,16 @@ for(i=0;i<3;i++){
     }
 }
 console.log(tabOcc)
+
+brac = [
+    1 ,2
+]
+occ2 = {
+    0 : 1,
+    1 : -1,
+    2 : 0,
+}
+if (1 === 1 && 1 != 0) {
+    animalKill = 1;
+    occ[1] = occ[1] - 1;
+}

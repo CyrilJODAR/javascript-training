@@ -1,6 +1,18 @@
-let TextMainContainer = document.querySelector(".container-h2First");
-let TextMainContainer2 = document.querySelector(".container-h2Second");
-let TextMainContainer3 = document.querySelector(".container-h2Third");
+let textMainContainer = document.querySelector(".container-h2First");
+let textMainContainer2 = document.querySelector(".container-h2Second");
+let textMainContainer3 = document.querySelector(".container-h2Third");
+const forEachClassesChange = document.querySelectorAll('.foreachClasses');
+const forEachClassesChangeText = document.querySelector(".textContent");
+function functionChangeColorBleu(){
+    for(n of forEachClassesChange){n.classList.replace("rouge", "bleu")};
+    forEachClassesChangeText.textContent = `bleu`;
+    forEachClassesChangeText.classList.replace("rouge", "bleu")
+}
+function functionChangeColorRouge(){
+    for(n of forEachClassesChange){n.classList.replace("bleu", "rouge")}
+    forEachClassesChangeText.textContent = `rouge`;
+    forEachClassesChangeText.classList.replace("bleu", "rouge")
+}
 // const firstPart = `Cyril`;
 // const secondPart = `"C.J" Jodar`;
 // const age = 25;
@@ -60,7 +72,7 @@ for(i=0;i<tabVille.length;i++){
 }
 // VALUES SENT
 resultObject = `M. ${biggestCity.lastName} habite dans la plus grande ville qui est ${biggestCity.town.name} avec ${biggestCity.town.population}`;
-TextMainContainer.textContent = resultObject;
+textMainContainer.textContent = resultObject;
 // 
 // PERSON BIGGEST IMC
 // 
@@ -74,7 +86,7 @@ for(i=0;i<tabVille.length;i++){
 }
 // VALUES SENT
 resultObject2 = `c'est ${biggestImc.firstName} qui a l'IMC la plus élevée : ${biggestImc.imc}`;
-TextMainContainer2.textContent += resultObject2;
+textMainContainer2.textContent += resultObject2;
 // FUNCTION IMC
 function calculImcFor(data){
     const imc = tabVille[i].weight / (tabVille[i].size **2)
@@ -94,13 +106,14 @@ for(i=0;i<tabVille.length;i++){
 }
 // VALUES SENT
 resultObject3 = `la ville de ${biggestSuperficie.town.name} a une densité de ${biggestSuperficie.town.density} pers/km2`
-TextMainContainer3.textContent += resultObject3;
+textMainContainer3.textContent += resultObject3;
 // FUNCTION DENSITY
 function calcDensity(data){
     const density = tabVille[i].town.population / tabVille[i].town.superficie;
     tabVille[i].town.density = density
     return density;
 }
+
 
 // const id1 = {
 //     firstName : `Cyril`,
@@ -172,16 +185,16 @@ function calcDensity(data){
 
 
 
-// TextMainContainer.textContent += resultObject
-// TextMainContainer2.textContent += resultObject2
-// TextMainContainer3.textContent += resultObject3
+// textMainContainer.textContent += resultObject
+// textMainContainer2.textContent += resultObject2
+// textMainContainer3.textContent += resultObject3
 // firstNameArray[firstNameArray.length-1] | firstNameArray.pop();
 
 // const result = `Ia ora na, je m'appelle ${firstNameArray.pop()} ${secondPart}, j'ai ${age} ans. `;
 // let result1;
 // let result2;
 // result += firstPart + ` ` + secondPart
-// TextMainContainer.textContent = result;
+// textMainContainer.textContent = result;
 
 // Age pair frère
 
@@ -190,7 +203,7 @@ function calcDensity(data){
 // } else {
 //     result1 = `L'age de mon frère est impair il a ${bortherAge} ans. `;
 // }
-// TextMainContainer.textContent += result1;
+// textMainContainer.textContent += result1;
 
 
 // Trois conditions
@@ -201,7 +214,7 @@ function calcDensity(data){
 // } else{
 //     result2 = `Il est moins agé de ${age-bortherAge} ans.`;
 // }
-// TextMainContainer.textContent += result2;
+// textMainContainer.textContent += result2;
 
 // Deux conditions
 // if(bortherAge >= age){

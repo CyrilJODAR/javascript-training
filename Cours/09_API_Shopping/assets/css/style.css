@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "roboto-regular";
+  src: url("../fonts/Roboto/Roboto-Regular.ttf");
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "roboto-regular";
+}
+body header {
+  background-color: #3c3c61;
+  height: 30vh;
+  color: white;
+  box-shadow: 3px 3px 10px black;
+}
+body header h1 {
+  font-weight: 800;
+}
+body header section {
+  width: 80%;
+}
+body main .displayItems {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+body main .displayItems .cardStyle {
+  width: 45%;
+  max-height: 700px;
+}
+body main .displayItems .cardStyle img {
+  height: 250px;
+  object-fit: scale-down;
+  padding: 10px;
+}
+body main .displayItems .cardStyle .cardBodyStyle {
+  position: relative;
+}
+body main .displayItems .cardStyle .cardBodyStyle p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 80px;
+}
+body main .displayItems .cardStyle .cardBodyStyle .lowDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+}
+body main .displayItems .cardStyle .cardBodyStyle .lowDiv p {
+  color: #EF4D55;
+  height: 20px;
+}
+body main .displayItems .cardStyle .cardBodyStyle .lowDiv a {
+  color: #042e99;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,76 @@
+@import "abstract/variables";
+@import 'mixin/mixin';
+
+@font-face {
+    font-family: $fontRobotoRegular;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+    font-family: $fontRobotoRegular;
+    header{
+        background-color: $colorSecondary;
+        height: 30vh;
+        color: $color2;
+        box-shadow: 3px 3px 10px black;
+        h1{
+            font-weight: 800;
+        }
+        section{
+            width: 80%;
+        }
+    }
+    main{
+        .displayItems{
+            margin-top: 50px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 20px;
+            .cardStyle{
+                width: 45%;
+                max-height: 700px;
+                img{
+                    height: 250px;
+                    object-fit: scale-down;
+                    padding: 10px;
+                }
+                .cardBodyStyle{
+                    position: relative;
+                    p{
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        height: 80px;
+                    }
+                    .lowDiv{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    text-align: center;
+                    padding: 0 20px;
+                    position: absolute;
+                    bottom: 15px;
+                    width: 100%;
+                        p{
+                            color: $colorOptional1;
+                            height: 20px;
+                        }
+                        a{
+                            color: $colorOptional2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

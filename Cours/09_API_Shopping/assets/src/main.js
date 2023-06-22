@@ -1,13 +1,14 @@
 const checkboxs = document.querySelectorAll('.myCheckboxes');
 const displayItems = document.querySelector('.displayItems');
-const allChecks = document.querySelectorAll('.checks');
-const mySelect = document.querySelectorAll('.mySelect');
-
-allChecks.forEach(element => {
-    element.addEventListener('change', CategoryCheck)
-});
-
+const allChecks = document.querySelectorAll('.myCheckboxes');
+const mySelect = document.querySelector('.mySelect');
+let multipleCategories = []
 let data
+allChecks.forEach(element => {
+    element.addEventListener('change', onChecks)
+});
+mySelect.addEventListener('change', onSelect)
+
 fetchDataPool()
 
 async function fetchDataPool(){
@@ -15,34 +16,37 @@ async function fetchDataPool(){
         const response = await fetch(`https://fakestoreapi.com/products`)
         if(!response.ok) throw new Error(`Error : ${response.status}`)
         data = await response.json()
-        createMyElements(data)
-
+        createMyElements()
     } catch (error) {
         console.log(`Il y a eu une erreur.  JS : ${error}`)
     }
 }
-function CategoryCheck(){
-    let multipleCategories = [] 
+function selectSort(){
+    data.sort((a,b)=>{
+        if(mySelect.value === "croissant") return tempData = (a.price - b.price)
+        if(mySelect.value === "decroissant") return tempData = (b.price-a.price)
+        if(mySelect.value === "nCroissant") return tempData = (a.rating.rate-b.rating.rate)
+        if(mySelect.value === "nDecroissant") return tempData = (b.rating.rate-a.rating.rate)
+    })
+}
+function onSelect(){
+    selectSort()
+    createMyElements()
+}
+function onChecks(){
+    updateCategory()
+    createMyElements()
+}
+function updateCategory(){
     allChecks.forEach(el => {
-        if(el.checked) multipleCategories.push(el.value)
-    });
-    SelectSort()
-    createMyElements(data, multipleCategories)
+        if (el.checked) multipleCategories.push(el.value)
+    })
 }
-
-function SelectSort(e){
-       if(e.value !=0){
-        console.log(e)
-       }
-}
-
-
-
-function createMyElements(data, multipleCategories = []){
+function createMyElements(){
     displayItems.textContent = "";
     data.forEach(element => {
-        if(multipleCategories.length != 0) if(!multipleCategories.includes(element.category)) return
-
+        if(multipleCategories.length != 0 && !multipleCategories.includes(element.category)) return
+        
         const newDiv = document.createElement("div")
         newDiv.classList.add("card", "cardStyle")
 

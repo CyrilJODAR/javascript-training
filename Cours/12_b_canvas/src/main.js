@@ -4,7 +4,9 @@ let radius=150
 export default function main(stg) {
     stage = stg;
     createBackGround()
-    createPolyStar()
+    createPolyStar(200,200,"grey")
+    createPolyStar(300,300,"red")
+
     return stage;
 }
 function createBackGround(){
@@ -14,19 +16,19 @@ function createBackGround(){
 
     stage.addChild(bg)
 }
-function createPolyStar(){
+function createPolyStar(paramX, paramY, col){
     let gr = new createjs.Graphics()
     let ps = new createjs.Shape(gr);
     ps.pace = 10
     ps.canMove = false
-    ps.x = 200
-    ps.y = 200
-    ps.addEventListener("tick", onShurikenTick);
-    ps.addEventListener("click", onShurikenClick);
-    gr.beginStroke("black").beginFill("orange").drawPolyStar(0, 0, radius, 4, 0.6, 0)
-    gr.beginStroke("black").beginFill("white").drawCircle(0, 0, 20);
+    ps.x = paramX
+    ps.y = paramY
+    // ps.addEventListener("tick", onShurikenTick);
+    // ps.addEventListener("click", onShurikenClick);
+    ps.addEventListener('pressmove', onPressMove);
+    gr.beginStroke("black").beginFill(col).drawPolyStar(0, 0, radius, 4, 0.6, 0)
+    gr.beginStroke("black").beginFill("grey").drawCircle(0, 0, 20);
     stage.addChild(ps);
-
 }
 function onShurikenClick(e){
     let ps = e.currentTarget
@@ -36,18 +38,24 @@ function onShurikenTick(e){
     let ps = e.currentTarget
     if(!ps.canMove) return
 
-    ps.rotation += 10;
-    ps.x+=ps.pace
+    ps.rotation += 5;
+    // ps.x+=ps.pace
             // ps.pace *= -1
-    if(ps.x>stage.width - radius){
-        ps.y+=ps.pace
-        ps.x = stage.width - radius
-    } else if(ps.y>stage.height - radius){
-        ps.x+=ps.pace
-        ps.y = stage.height - radius
-    }
+    // if(ps.x>stage.width - radius){
+    //     ps.y+=ps.pace
+    //     ps.x = stage.width - radius
+    // }
+    // if(ps.y<=radius){
+    //     ps.pace *= -1
+    //     ps.x=ps.pace
+    //     ps.y = radius
+    // }
     // if(ps.x<=radius) {
     //     ps.pace *= -1
     //     ps.y+=ps.pace
     // }
+}
+function onPressMove(e){
+    e.currentTarget.x = stage.mouseX
+    e.currentTarget.y = stage.mouseY
 }

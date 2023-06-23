@@ -32,18 +32,22 @@ function onShurikenClick(e){
     let ps = e.currentTarget
     ps.canMove = !ps.canMove
 }
-
 function onShurikenTick(e){
     let ps = e.currentTarget
     if(!ps.canMove) return
 
     ps.rotation += 10;
-    
     ps.x+=ps.pace
+            // ps.pace *= -1
     if(ps.x>stage.width - radius){
-        ps.pace *= -1
+        ps.y+=ps.pace
+        ps.x = stage.width - radius
+    } else if(ps.y>stage.height - radius){
+        ps.x+=ps.pace
+        ps.y = stage.height - radius
     }
-    if(ps.x<=radius) {
-        ps.pace *= -1 
-    }
+    // if(ps.x<=radius) {
+    //     ps.pace *= -1
+    //     ps.y+=ps.pace
+    // }
 }

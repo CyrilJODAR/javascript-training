@@ -11,7 +11,10 @@
   }
 
 img{
-    height: 250px;
+    height: 100px;
+}
+h2{
+    font-size: 15px;
 }
 header{
     height: 20vh;
@@ -20,30 +23,51 @@ header{
     align-items: center;
     gap: 20px;
 }
-main{
+.recipes{
     display: flex;
     justify-content: space-evenly;
     align-items:center;
     gap: 60px;
     flex-wrap: wrap;
+    width: 80vw;
+}
+.formContact{
+    height: 150px;
+    width: 500px;
+}
+.formContact>form>button{
+    padding: 15px 25px;
+    width: 10px;
+}
+.formContact form{
+    display: flex;
+    flex-direction: column;
 }
 body{
-    /* background-color: #000000;
-    background-image: linear-gradient(315deg, #000000 0%, #414141 74%); */
     font-family: "roboto-regular";
     min-height: 100vh;
     user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 a{
-    background-color: lightgreen;
-    background-image: linear-gradient(147deg, lightgreen 0%, #000000 170%);
+    background-color: burlywood;
+    background-image: linear-gradient(147deg, burlywood 90%, #000000 170%);
     text-decoration: none;
     padding: 15px 30px;
     color: white;
     cursor: pointer;
     border-radius: 10px;
     width: fit-content;
+}
+a:hover{
+    background-color: white;
+    background-image: linear-gradient(147deg, white 90%, #000000 170%);
+    color: burlywood;
+
 }
 .myArticle{
     display: flex;
@@ -52,14 +76,14 @@ a{
     text-align: center;
     gap: 20px;
     color: black;
-    border: 6px solid WHITE;
-    box-shadow: 8px 8px 0px lightgreen,-8px -8px 0px lightcoral;
+    border: 2px solid white;
+    box-shadow: 5px 5px 0px lightgreen,-5px -5px 0px lightcoral;
     border-radius: 25px;
     padding: 15px;
-    background-color: rgb(228, 227, 227);
+    background-color: burlywood;
 }
 .myArticle:hover{
-    box-shadow: 12px 12px 0px lightgreen,-12px -12px 0px lightcoral;
+    box-shadow: 8px 8px 0px lightgreen,-8px -8px 0px lightcoral;
     transition: 0.2s;
 
 }
@@ -67,6 +91,8 @@ a{
     text-decoration: underline;
 }
 .myArticle img{
-    object-fit: cover;
+    object-fit: scale-down;
     object-position: center;
+    filter: drop-shadow(0 3px 0.5rem black);
+    border-radius: 50px;
 }

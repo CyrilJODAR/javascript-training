@@ -1,11 +1,3 @@
-// get elements from DOM to assign them
-const btn = document.querySelector('.btnAddArticle')
-const btnRemove = document.querySelector('.btnRemoveArticle')
-const recipesContainer = document.querySelector('.recipes')
-const btnRemoveAll = document.querySelector('.btnRemoveAllArticle')
-const btnAddAllMeals = document.querySelector('.btnAddAllMeals')
-const btnAddAllCategories = document.querySelector('.btnAddAllCategories')
-
 const createNodeElements = (tagType,Text,myObject) =>{
     // SET PATERN DOM ELEMENT
     // create the element
@@ -33,14 +25,66 @@ const contactFormComp = () => {
     // onclick submit show console message
     // flemme to do
 }
+const addButtonsGenerate = () =>{
+    const header = document.querySelector('header')
+    // first set of buttons generated for deletes options
+    let myDivGenerate = createNodeElements("div")
+    header.appendChild(myDivGenerate)
+    let myBtnGenerate = createNodeElements("a","remove last",{class: "btnRemoveArticle"})
+    myDivGenerate.appendChild(myBtnGenerate)
+    myBtnGenerate = createNodeElements("a","remove all",{class: "btnRemoveAllArticle"})
+    myDivGenerate.appendChild(myBtnGenerate)
+    // second set of buttons generated for add options
+    myDivGenerate = createNodeElements("div")
+    header.appendChild(myDivGenerate)
+    myBtnGenerate = createNodeElements("a","all Meals",{class: "btnAddAllMeals"})
+    myDivGenerate.appendChild(myBtnGenerate)
+    myBtnGenerate = createNodeElements("a","all Categories",{class: "btnAddAllCategories"})
+    myDivGenerate.appendChild(myBtnGenerate)
+    
+    // get elements from DOM to assign them
+    const btnRemove = document.querySelector('.btnRemoveArticle')
+    const recipesContainer = document.querySelector('.recipes')
+    const btnRemoveAll = document.querySelector('.btnRemoveAllArticle')
+    const btnAddAllMeals = document.querySelector('.btnAddAllMeals')
+    const btnAddAllCategories = document.querySelector('.btnAddAllCategories')
+
+    // add and event on my button which removes the last article
+    btnRemove.addEventListener('click', () =>{
+        // gets all the articles
+        const mainArticle2 = document.querySelectorAll('.myArticle')
+        // checks if there's at least one element and if true, delete last
+        if(mainArticle2.length != 0) recipesContainer.removeChild(mainArticle2[mainArticle2.length-1])
+    })
+    // add and event on my button which removes all articles
+    btnRemoveAll.addEventListener('click', () =>{
+        // gets all the articles
+        const mainArticle2 = document.querySelectorAll('.myArticle')
+        // cycle through them and delete them one by one
+        mainArticle2.forEach(element =>{
+            recipesContainer.removeChild(element)
+        })
+    })
+
+    btnAddAllMeals.addEventListener('click', mealListComp)
+    btnAddAllCategories.addEventListener('click', mealCategoryComp)
+}
 
 const mealListComp = async () =>{
+    const recipesContainer = document.querySelector('.recipes')
+
     // Call fetch async to the URL of the API
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s`);
     // check if error ? Yes -> throw error status : continue ou exec
     if(!response.ok) throw new Error(`Error : ${response.status}`)
     // convert json of data from API to JS object
     const data = await response.json()
+
+    console.log("%cThis is my list of meals name", "color: #007acc;", );
+    data.meals.forEach(element =>{
+        console.log(`%c${element.strMeal}`, `background: rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255}); color: white;`);
+    })
+
     let count = 1
     // for each of the meals, create an element where we add datas from the API such as the title, thumbnail...
     data.meals.forEach(element =>{
@@ -71,13 +115,14 @@ const mealListComp = async () =>{
 }
 
 const mealCategoryComp = async () =>{
+    const recipesContainer = document.querySelector('.recipes')
+
     // Call fetch async to the URL of the API
     const responseCategoryList = await fetch(`https://www.themealdb.com/api/json/v1/1/categories.php`)
     // check if error ? Yes -> throw error status : continue ou exec
     if(!responseCategoryList.ok) throw new Error(`Error : ${response.status}`)
     // convert json of data from API to JS object
     const dataCategoryList = await responseCategoryList.json()
-    console.log(dataCategoryList)
     let count = 1
     // for each of the categories of meal, create an element where we add datas from the API such as the title, thumbnail...
     dataCategoryList.categories.forEach(element =>{
@@ -93,23 +138,5 @@ const mealCategoryComp = async () =>{
     })
     count=1
 }
-// add and event on my button which removes the last article
-btnRemove.addEventListener('click', () =>{
-    // gets all the articles
-    const mainArticle2 = document.querySelectorAll('.myArticle')
-    // checks if there's at least one element and if true, delete last
-    if(mainArticle2.length != 0) recipesContainer.removeChild(mainArticle2[mainArticle2.length-1])
-})
-// add and event on my button which removes all articles
-btnRemoveAll.addEventListener('click', () =>{
-    // gets all the articles
-    const mainArticle2 = document.querySelectorAll('.myArticle')
-    // cycle through them and delete them one by one
-    mainArticle2.forEach(element =>{
-        recipesContainer.removeChild(element)
-    })
-})
 contactFormComp()
-
-btnAddAllMeals.addEventListener('click', mealListComp)
-btnAddAllCategories.addEventListener('click', mealCategoryComp)
+addButtonsGenerate()

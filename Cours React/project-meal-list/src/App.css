@@ -1,0 +1,82 @@
+.App-logo {
+  pointer-events: none;
+  height: 80px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body{
+  min-height: 100vh;
+}
+.myHeader{
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.myFooter{
+  height: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.myFooter>section{
+  width: 33%;
+}
+.myHeader>ul{
+  display: flex;
+  list-style: none;
+  gap: 50px;
+  width: 100%;
+  padding-left: 20px;
+}
+.myMain{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100%;
+  margin-top: 50px;
+}
+.myMain img{
+  border-radius: 50px
+}
+.myMain>section{
+  display: flex;
+  flex-direction: column;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+a:visited{
+  color: black;
+}
+.myHeader>ul>li:first-child{
+  margin-right: auto;
+}
+.myHeader>ul{
+  padding-right: 100px;
+  align-items: center;
+}
+.myHeader>ul>li:first-child a{
+  height: 80px;
+  display: inline-block;
+}

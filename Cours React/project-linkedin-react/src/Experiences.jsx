@@ -29,7 +29,7 @@ const Experiences = () =>{
         },
     ];
     return(
-        <>
+        <div className="ContainerXp">
             {experiencesFromFakeApi.map((xp) => (
                 <div className="CardXp">
                     <h3>Poste : {xp.title}</h3>
@@ -40,7 +40,7 @@ const Experiences = () =>{
                     </p>
                  </div>
             ))}
-        </>
+        </div>
     )
 }
 

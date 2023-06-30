@@ -1,4 +1,4 @@
-const CocktailList = ({cocktail}) =>{
+const CocktailSingle = ({cocktail}) =>{
       return(
             <li key={cocktail.id} className="CocktailCard">
                 <h3>{cocktail.name}</h3>
@@ -7,4 +7,4 @@ const CocktailList = ({cocktail}) =>{
             </li>
       )
 }
-export default CocktailList
+export default CocktailSingle

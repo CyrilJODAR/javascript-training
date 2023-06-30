@@ -33,9 +33,6 @@ li, a{
   gap: 50px;
   padding: 0 50px;
 }
-.myHeader ul li:first-child{
-  margin-right: auto;
-}
 .myHeader a i{
   color: green;
 }

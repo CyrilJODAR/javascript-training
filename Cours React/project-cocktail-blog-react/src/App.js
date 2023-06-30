@@ -4,6 +4,7 @@ import CocktailLastThree from './CocktailLastThree';
 import CocktailRandom from './CocktailRandom';
 import Footer from './Footer';
 import Header from './Header';
+import RhumCocktails from './RhumCocktails';
 import UserInfo from './UserInfo';
 
 function App() {
@@ -47,6 +48,18 @@ function App() {
       price: 12,
       ingredients: ["Rhum", "Lait de coco", "Jus d'ananas"],
       isPublished: true,
+    }, {
+      id: 5,
+      name: "Bloody Mary",
+      price: 8,
+      ingredients: ["Vodka", "Jus de tomate", "Sauce Worcestershire"],
+      isPublished: true,
+    }, {
+      id: 6,
+      name: "Ti punch",
+      price: 8,
+      ingredients: ["Rhum", "Citron vert", "Sirop de canne"],
+      isPublished: true,
     }
   ];
   const cocktailPublished = cocktailsFromApi.filter(cocktail => cocktail.isPublished)
@@ -59,6 +72,7 @@ function App() {
           <CocktailRandom cocktailPublished={cocktailPublished}/>
           <CocktailLastThree cocktailPublished={cocktailPublished}/>
           <CocktailAll cocktailPublished={cocktailPublished}/>
+          <RhumCocktails cocktailPublished={cocktailPublished}/>
         </section>
       </main>
       <Footer />

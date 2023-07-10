@@ -1,0 +1,114 @@
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+a:visited{
+  color: white;
+}
+li{
+  list-style: none;
+}
+main{
+  padding: 80px 20px 50px;
+  gap: 50px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.myHeader{
+  background-color: #282829;
+  position: relative;
+}
+.myHeader nav ul{
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  padding: 10px 150px;
+}
+.myHeader nav ul img{
+  height: 80px;
+  border-radius: 1000px;
+  box-shadow: rgba(79, 79, 79, 0.6) 1px 1px 5px;
+}
+.myHeader nav ul li:first-child{
+  margin-right: auto;
+}
+.myFooter{
+  background-color: #fdfdfd;
+  box-shadow: 2px 2px 8px black;
+}
+.myFooter ul{
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  padding: 10px 150px;
+}
+.myFooter ul img{
+  height: 80px;
+  border-radius: 1000px;
+  box-shadow: rgba(0, 0, 0, 0.6) 4px 4px 8px;
+}
+.myFooter ul li:first-child{
+  margin-right: auto;
+}
+.myArticles{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  width: fit-content;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.AllPlaces, .HighRatedSpaces{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #fdfdfd;
+}
+.rating{
+  color: gold;
+  margin-left: auto;
+  padding: 5px;
+  border-radius: 1px;
+  text-shadow: -1px -1px 0 #282829, 1px -1px 0 #282829, -1px 1px 0 #282829, 1px 1px 0 #282829;
+  font-size: 1.2rem;
+}
+
+.custom-shape-divider-top-1688985084 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1688985084 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 80px;
+}
+
+.custom-shape-divider-top-1688985084 .shape-fill {
+  fill: goldenrod;
+}

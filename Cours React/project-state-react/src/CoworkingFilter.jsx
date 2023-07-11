@@ -2,7 +2,7 @@ import Coworking from "./Coworking";
 import { useState } from "react";
 
 const CoworkingFilter = ({coworkings}) => {
-    
+
     const [filter,setFilter] = useState(true)
     const handleChange = (e) => {
         setFilter(e.target.value)
@@ -11,8 +11,7 @@ const CoworkingFilter = ({coworkings}) => {
     let sortedCoworkings = coworkings.filter(cowork => filter === cowork.address ?? true)
     
     // REMOVES DUPLICATES TO GENERATE BUTTONS OR OPTIONS
-    const coworkingPlaces = coworkings.map(coworking => coworking.address)
-    const uniqueCoworkingPlaces = [...new Set(coworkingPlaces)];
+    const uniqueCoworkingPlaces = [...new Set(coworkings.map(coworking => coworking.address))];
 
     return (
       <section>

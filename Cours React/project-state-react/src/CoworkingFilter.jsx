@@ -8,7 +8,8 @@ const CoworkingFilter = ({coworkings}) => {
         setFilter(e.target.value)
     }
     // FILTERS MY COWORKING PLACES
-    let sortedCoworkings = coworkings.filter(cowork => filter === cowork.address ?? true)
+    // eslint-disable-next-line
+    let sortedCoworkings = coworkings.filter(cowork => filter === cowork.address || filter === true || filter === "displayAll")
     
     // REMOVES DUPLICATES TO GENERATE BUTTONS OR OPTIONS
     const uniqueCoworkingPlaces = [...new Set(coworkings.map(coworking => coworking.address))];
@@ -24,7 +25,7 @@ const CoworkingFilter = ({coworkings}) => {
         }
         {/* GENERATES OPTIONS FOR MY SELECT FROM MY NON DUPLICATED LIST OF PLACES */}
         <select onChange={handleChange} name="villes" id="ville-select">
-            <option value=''>--Choisir un filtre--</option>
+            <option value="displayAll">--Choisir un filtre--</option>
             {uniqueCoworkingPlaces.map(coworkingPlace =>(
                 <option value={coworkingPlace}>{coworkingPlace}</option>
             ))
@@ -33,8 +34,8 @@ const CoworkingFilter = ({coworkings}) => {
 
         {/* GENERATES MY COWORKING PLACES DEPENDING ON THE FILTER */}
         <div className="myContainer">
-            {sortedCoworkings.map((item, index) =>(
-                <Coworking item={item} key={index}/>
+            {sortedCoworkings.map((item) =>(
+                <Coworking item={item} key={item.id}/>
             ))}
         </div>
       </section>

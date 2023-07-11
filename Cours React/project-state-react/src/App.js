@@ -1,4 +1,5 @@
 import './App.css';
+import ContactForm from './ContactForm';
 import CoworkingFilter from './CoworkingFilter';
 import CreateCoworking from './CreateCoworking';
 
@@ -44,6 +45,7 @@ function App() {
     <>
     <main>
       <CoworkingFilter coworkings={coworkings}/>
+      <ContactForm />
       <CreateCoworking />
     </main>
     </>

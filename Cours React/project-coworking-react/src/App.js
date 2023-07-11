@@ -3,7 +3,7 @@ import AllHighRatedCoworkingItems from './AllHighRatedCoworkingItems';
 import './App.css';
 import Footer from './Footer';
 import Header from './Header';
-import Welcome from './welcome';
+import Welcome from './Welcome';
 
 function App() {
 

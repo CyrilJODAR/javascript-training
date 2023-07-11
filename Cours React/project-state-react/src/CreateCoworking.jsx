@@ -19,15 +19,15 @@ const CreateCoworking = () =>{
                 <form>
                     <div className="row">
                         <div className="col-25"><label htmlFor="title">Titre</label></div>
-                        <div className="col-75"><input type="text" id="fname" name="title" placeholder="Your name.."/></div>
+                        <div className="col-75"><input type="text" id="fname" name="title" placeholder="le titre de votre card.."/></div>
                     </div>
                     <div className="row">
                         <div className="col-25"><label htmlFor="adress">adresse</label></div>
-                        <div className="col-75"><input type="text" id="lname" name="adress" placeholder="Your last name.."/></div>
+                        <div className="col-75"><input type="text" id="lname" name="adress" placeholder="l'adresse du coworking.."/></div>
                     </div>
                     <div className="row">
                         <div className="col-25"><label htmlFor="desc">desc</label></div>
-                        <div className="col-75"><textarea id="subject" name="desc" placeholder="Write something.."></textarea></div>
+                        <div className="col-75"><textarea id="subject" name="desc" placeholder="une courte description.."></textarea></div>
                     </div>
                     <div className="row">
                         <input type="submit" value="Submit" />

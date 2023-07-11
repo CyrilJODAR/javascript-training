@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const CreateCoworking = () =>{
     const [objCoworking, setObjCoworking] = useState([]);
-
     const handleSubmit = (e) =>{
         e.preventDefault()
         setObjCoworking([...objCoworking,{
@@ -12,6 +11,7 @@ const CreateCoworking = () =>{
             img : "https://picsum.photos/200/200",
             address : e.target.adress.value,
         }])
+        e.target.reset()
     }
     return(
         <>

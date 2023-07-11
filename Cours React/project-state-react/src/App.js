@@ -1,9 +1,13 @@
 import './App.css';
+import CreateCoworking from './CreateCoworking';
 
 function App() {
   return (
-      <header className="App-header">
-      </header>
+    <>
+    <main>
+      <CreateCoworking />
+    </main>
+    </>
   );
 }
 

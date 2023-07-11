@@ -87,3 +87,17 @@ input[type=submit]:hover {
   }
 }
 /* END FORM STYLE */
+.myArticles{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  /* width: fit-content; */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  object-fit: cover;
+  object-position: center;
+}
+.myArticles img{
+  height: 200px;
+}

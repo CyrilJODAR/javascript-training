@@ -1,11 +1,12 @@
-const mockCoworkings = require('./mock-coworkings')
+let mockCoworkings = require('./mock-coworkings')
 const express = require('express')
 const app = express()
 const port = 3001
 
+app.use(express.json())
+
 app.get('/api/coworkings/:id', (req, res)=> {
     const myCoworking = mockCoworkings.find(coworking => coworking.id === parseInt(req.params.id))
-    // console.log(`mon coworking ${myCoworking.name}`)
     res.json({ result : `Nom du coworking : n° ${req.params.id} => ${myCoworking ? myCoworking.name : `coworking introuvable` }`})
 })
 
@@ -26,7 +27,6 @@ app.get('/api/coworkings', (req, res)=> {
 })
 
 app.get('/api/coworkingsSortSuperficie', (req, res) => {
-    
     const myCoworkingsSortedSuperficie = mockCoworkings.sort((a, b) => a.superficy - b.superficy);
       res.json({superficieOrder : myCoworkingsSortedSuperficie})
 })
@@ -35,3 +35,19 @@ app.listen(port, () =>{
     console.log(`my port is ${port}`);
 })
 
+app.post('/api/coworkingAdd', (req, res) =>{
+    mockCoworkings.push(req.body)
+    return res.json({message :'Post sent'})
+})
+
+app.put('/api/coworkingUpdate/:id', (req, res) =>{
+    mockCoworkings = mockCoworkings.map(ele => {
+        return ele.id === req.body.id ? req.body : ele
+    })
+    return res.json({message :'update done'}) 
+})
+
+app.delete('/api/coworkingDelete/:id', (req, res) =>{
+    mockCoworkings = mockCoworkings.filter(ele=> ele.id != req.body.id)
+    return res.json({message :'delete done'}) 
+})

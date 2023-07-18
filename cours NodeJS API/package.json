@@ -1,12 +1,14 @@
 {
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mariadb": "^3.2.0",
+    "sequelize": "^6.32.1"
   },
   "name": "cours-nodejs-api",
   "version": "1.0.0",
   "main": "app.js",
   "devDependencies": {
+    "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
   },
   "scripts": {

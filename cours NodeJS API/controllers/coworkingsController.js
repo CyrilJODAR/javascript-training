@@ -1,43 +1,89 @@
-let mockCoworkings = require('../db/mock-coworkings')
+const { Op } = require('sequelize');
+const { Coworkings } = require('../db/sequelize');
 
 exports.GetCoworkings = ((req, res)=> {
-    const orderByCrit = req.query.crit || 'superficy'
-    const orderBy = req.query.orderBy || 'ASC'
-    const orderUserChoiceCoworkings = [...mockCoworkings];
-
-    if((orderBy === 'ASC' || orderBy ==='DESC') && (orderByCrit === 'superficy' || orderByCrit === 'capacity')){
-        orderUserChoiceCoworkings.sort((a, b) =>orderBy === 'DESC' ? b[orderByCrit] - a[orderByCrit] : a[orderByCrit] - b[orderByCrit])
-        res.send(orderUserChoiceCoworkings)
+    let orderBy = {
+        crit : req.query.crit,
+        how : req.query.orderBy
     }
+    let searchTag = req.query.name
+    
+    Coworkings.findAll({
+            where : {
+                Name : {
+                   [Op.like] : searchTag ?`%${searchTag}%` : '%'}
+            },
+            order: [
+                [orderBy.crit ? orderBy.crit : 'id', orderBy.how ? orderBy.how : 'ASC']
+            ],
+    })
+    .then((coworks)=>{
+        console.log(orderBy)
+        res.json({data : coworks})
+    }).catch((error)=>{
+        res.status(404).json({ message: `ERROR ${error}`})
+    })
 })
 
 exports.CreateCoworkings = ((req, res) =>{
-    const newID = mockCoworkings[mockCoworkings.length - 1].id +1;
-    mockCoworkings.push({id : newID, ...req.body})
-
-    return res.json({message :'Post sent'})
+    const newCowork = req.body;
+    Coworkings.create({ 
+        Name: newCowork.name,
+        Price: newCowork.price,
+        numRue: newCowork.numRue,
+        Adresse: newCowork.Adresse,
+        Picture: newCowork.picture,
+        Superficy: newCowork.superficy,
+        Capacity: newCowork.capacity,
+        Created: newCowork.created 
+    }).then((cowork)=>
+        res.status(200).json({message: 'Coworking Added', ...cowork})
+    ).catch((error)=>
+        res.status(404).json({ message: `ERROR, Could not create Coworking ${error}`})
+    )
 })
 
 exports.GetCoworkingById = ((req, res)=> {
-    const myCoworking = mockCoworkings.find(coworking => coworking.id === parseInt(req.params.id)) ??
-    res.status(404).json({ message : `coworking introuvable ==> n° ${req.params.id}`})
-
-    res.json({ message : `Nom du coworking : n° ${req.params.id} => ${myCoworking.name}`, ...myCoworking})
+    Coworkings.findByPk(req.params.id)
+    .then(cowork=>{
+        if(!cowork){
+            throw new Error(`ID not found`);
+        }
+        res.status(200).json({message: 'Coworking Found', cowork})
+    }
+    ).catch((error)=>
+        res.status(404).json({ message: `${error}`})
+    )
 })
 
 exports.UpdateCoworkingById = ((req, res) =>{
-    const updatedID = mockCoworkings.findIndex(ele => ele.id === parseInt(req.params.id))
-    mockCoworkings[updatedID] ? 
-    mockCoworkings[updatedID] = { ...mockCoworkings[updatedID], ...req.body } :
-    res.status(404).json({ message : 'coworking not found', id : `=> ${req.params.id}`})
-
-    res.json({message :'update done ==>', ...mockCoworkings[updatedID]}) 
+    Coworkings.findByPk(req.params.id)
+    .then(cowork=>{
+        if(!cowork){
+            throw new Error(`ID not found`);
+        } else{
+            cowork.update(req.body)
+            .then((cowork)=>{
+                    res.status(200).json({message: 'Coworking Updated', cowork})
+            })
+        }
+    })
+    .catch((error)=>
+    res.status(404).json({ message: `${error}`}))
 })
 
 exports.DeleteCoworkingById = ((req, res) =>{
-    mockCoworkings.find(ele => ele.id === parseInt(req.params.id)) ? 
-    mockCoworkings = mockCoworkings.filter(ele=> ele.id != parseInt(req.params.id)) :
-    res.status(404).json({ message : 'coworking not found', id : `=> ${req.params.id}`})
-
-    res.json({message :'delete done', ...mockCoworkings}) 
+    Coworkings.findByPk(req.params.id)
+    .then(cowork=>{
+        if(!cowork){
+            throw new Error(`ID not found`);
+        } else{
+            cowork.destroy()
+                .then((cowork)=>{
+                    res.status(200).json({message: 'Coworking deleted', cowork})
+                })
+        }
+    })
+    .catch((error)=>
+    res.status(404).json({ message: `${error}`}))
 })

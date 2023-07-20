@@ -48,4 +48,5 @@ sequelize.authenticate()
 
 module.exports = {
     initDatabase,
+    Coworkings,
 }

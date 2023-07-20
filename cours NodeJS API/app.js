@@ -1,5 +1,6 @@
 let mockCoworkings = require('./db/mock-coworkings')
 const coworkingRouter = require('./router/coworkingsRouter')
+const usersRouter = require('./router/usersRouter')
 const sequelize = require('./db/sequelize')
 
 const express = require('express')
@@ -12,6 +13,7 @@ sequelize.initDatabase()
 app.use(express.json())
 app.use(morgan("dev"))
 app.use('/api/coworkings', coworkingRouter)
+app.use('/api/users', usersRouter)
 app.listen(port, () =>{
     console.log(`my port is ${port}`);
 })

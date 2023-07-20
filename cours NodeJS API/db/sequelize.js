@@ -1,6 +1,4 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const CoworkingModel = require('../Models/coworkingsModel')
-const VillesModel = require('../Models/villesModel')
 let mockCoworkings = require('./mock-coworkings')
 
 const sequelize = new Sequelize('coworkinglapiscine', 'root', '', {
@@ -9,8 +7,12 @@ const sequelize = new Sequelize('coworkinglapiscine', 'root', '', {
     logging: false,     // Disables logging
 });
 
+const CoworkingModel = require('../Models/coworkingsModel')
 const Coworkings = CoworkingModel(sequelize, DataTypes)
+const VillesModel = require('../Models/villesModel')
 const Villes = VillesModel(sequelize, DataTypes)
+const UserModel = require('../Models/userModel')
+const Users = UserModel(sequelize, DataTypes)
 
 sequelize.authenticate()
     .then(()=>console.log('auth BDD success'))
@@ -43,10 +45,20 @@ sequelize.authenticate()
                     CodePostal: city.cp
                 })
             })
+
+            for (let index = 0; index < 20; index++) {
+                Users.create({
+                    username : `UserNumber${index+1}`,
+                    phone : 111111111 + index *15,
+                    adress : `${Math.floor(Math.random()*500)} rue moncuc`,
+                    password : `jhfJHKFDnfjnc554?`
+                })
+            }
     })
 }
 
 module.exports = {
     initDatabase,
     Coworkings,
+    Users,
 }

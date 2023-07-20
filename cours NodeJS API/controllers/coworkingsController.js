@@ -66,13 +66,12 @@ exports.UpdateCoworkingById = ((req, res) =>{
         if(!cowork){
             throw new Error(`ID not found`);
         } else{
-            cowork.update(req.body)
+            return cowork.update(req.body)
             .then((cowork)=>{
                     res.status(200).json({message: 'Coworking Updated', cowork})
             })
         }
-    })
-    .catch((error)=>
+    }).catch((error)=>
     res.status(404).json({ message: `${error}`}))
 })
 
@@ -82,7 +81,7 @@ exports.DeleteCoworkingById = ((req, res) =>{
         if(!cowork){
             throw new Error(`ID not found`);
         } else{
-            cowork.destroy()
+            return cowork.destroy()
                 .then((cowork)=>{
                     res.status(200).json({message: 'Coworking deleted', cowork})
                 })

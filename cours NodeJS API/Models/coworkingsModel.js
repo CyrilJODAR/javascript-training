@@ -8,15 +8,40 @@ module.exports = (sequelize, DataTypes)=>{
         },
         Name: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
+          unique: {
+          msg: 'Coworking Name already taken'
+        }
           // allowNull defaults to true
         },
         Price: {
           type: DataTypes.JSON,
+          allowNull: false,
+          validate: {
+            isPriceValid(value) {
+              if(value.hasOwnProperty('hour') && value.hasOwnProperty('day') && value.hasOwnProperty('month')){
+                if (value.hour === null && value.day === null && value.month === null ) {
+                  throw new Error("Price cannot have all values set to null")}
+              } else{
+                throw new Error("Incorect syntax in Price JSON")
+              }
+            }
+          }
         },
         numRue: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
+          validate: {
+            notNull: {
+              msg: 'Please enter a numRue'
+            },
+            // isInt: {
+            //   msg: 'numRue must be an Integer'
+            // },
+            notEmpty: {
+              msg: 'The numRue cannot be empty'
+            },
+          },
         },
         Adresse: {
           type: DataTypes.STRING,
@@ -27,11 +52,24 @@ module.exports = (sequelize, DataTypes)=>{
         },
         Superficy: {
           type: DataTypes.INTEGER,
-          allowNull: false
+          allowNull: false,
+          validate: {
+            isInt:  {
+              msg: 'Superficy Must be an INTEGER'
+            },
+            isNumeric: {
+              msg : 'La Superficie doit être un nombre'
+            },
+          },
         },
         Capacity: {
           type: DataTypes.INTEGER,
-          allowNull: false
+          allowNull: false,
+          validate: {
+            isInt:  {
+              msg: 'Capacity Must be an INTEGER'
+            },
+          },
         },
         Created: {
           type: DataTypes.DATE,

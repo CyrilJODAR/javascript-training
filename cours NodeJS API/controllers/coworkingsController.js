@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op, UniqueConstraintError, ValidationError } = require('sequelize');
 const { Coworkings } = require('../db/sequelize');
 
 exports.GetCoworkings = ((req, res)=> {
@@ -38,9 +38,13 @@ exports.CreateCoworkings = ((req, res) =>{
         Created: newCowork.created 
     }).then((cowork)=>
         res.status(200).json({message: 'Coworking Added', ...cowork})
-    ).catch((error)=>
-        res.status(404).json({ message: `ERROR, Could not create Coworking ${error}`})
-    )
+    ).catch((error)=>{
+        if(error instanceof UniqueConstraintError || error instanceof ValidationError){
+            res.status(400).json({ message: error.message})
+        } else{
+            res.status(500).json({ message: `ERROR : There was a problem with the server : ${error.message}`})
+        }
+    })
 })
 
 exports.GetCoworkingById = ((req, res)=> {

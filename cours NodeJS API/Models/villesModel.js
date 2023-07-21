@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) =>{
           type: DataTypes.INTEGER,
         },
       }, {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
       });
       // `sequelize.define` also returns the model
     

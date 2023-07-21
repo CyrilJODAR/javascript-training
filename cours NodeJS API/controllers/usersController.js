@@ -1,6 +1,6 @@
 const { Op, UniqueConstraintError, ValidationError } = require('sequelize');
 const { Users } = require('../db/sequelize');
-const { use } = require('../router/coworkingsRouter');
+const bcrypt = require('bcrypt');
 
 exports.GetUsers = ((req, res)=>{
     Users.findAll({
@@ -12,14 +12,18 @@ exports.GetUsers = ((req, res)=>{
 })
 
 exports.CreateUser = ((req, res)=>{
-    const newUser = req.body;
-    Users.create({
-        username : newUser.name,
-        phone : newUser.phone,
-        adress : newUser.adress,
-        password : newUser.password
-    }).then((user)=>{
-        res.status(200).json({message: 'User Added', data : user})
+    bcrypt.hash(req.body.password, 10)
+    .then((hash)=>{
+        const newUser = {...req.body, password : hash};
+        return Users.create({
+            username : newUser.username,
+            phone : newUser.phone,
+            adress : newUser.adress,
+            password : newUser.password,
+            roles : 3,
+        }).then((user)=>{
+            res.status(200).json({message: 'User Added', data : user})
+        })
     }).catch((error)=>{
         if(error instanceof UniqueConstraintError || error instanceof ValidationError){
             res.status(400).json({ message: error.message})

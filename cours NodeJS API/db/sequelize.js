@@ -13,6 +13,17 @@ const VillesModel = require('../Models/villesModel')
 const Villes = VillesModel(sequelize, DataTypes)
 const UserModel = require('../Models/userModel')
 const Users = UserModel(sequelize, DataTypes)
+const RolesModel = require('../Models/rolesModel')
+const BddRoles = RolesModel(sequelize, DataTypes)
+const RoleAccess = require('./roles.json');
+const rolesModel = require('../Models/rolesModel');
+
+Users.belongsTo(BddRoles, {
+    foreignKey: "roles",
+    })
+BddRoles.hasOne(Users, {
+    foreignKey: "roles",
+    })
 
 sequelize.authenticate()
     .then(()=>console.log('auth BDD success'))
@@ -23,6 +34,8 @@ sequelize.authenticate()
         .sync({force : true})
         .then(()=>{
             const uniqueCPVilles = []
+
+            RoleAccess.map(role => BddRoles.create({libele: role.libele}))
 
             mockCoworkings.forEach(element => {
                 uniqueCPVilles.find( ucp => ucp.cp === element.address.postCode) ??
@@ -36,7 +49,7 @@ sequelize.authenticate()
                     Picture: element.picture,
                     Superficy: element.superficy,
                     Capacity: element.capacity,
-                    Created: element.created 
+                    Created: element.created,
                 })
             })
             uniqueCPVilles.forEach(city => {
@@ -51,12 +64,12 @@ sequelize.authenticate()
                     username : `UserNumber${index+1}`,
                     phone : 111111111 + index *15,
                     adress : `${Math.floor(Math.random()*500)} rue moncuc`,
-                    password : `jhfJHKFDnfjnc554?`
+                    password : `jhfJHKFDnfjnc554?`,
+                    roles : 3
                 })
             }
     })
 }
-
 module.exports = {
     initDatabase,
     Coworkings,

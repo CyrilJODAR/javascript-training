@@ -47,7 +47,8 @@ module.exports = (sequelize, DataTypes)=>{
           }
         },
       }, {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
       });
       // `sequelize.define` also returns the model
 }

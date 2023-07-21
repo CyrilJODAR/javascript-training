@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 let mockCoworkings = require('./mock-coworkings')
+const bcrypt = require('bcrypt');
 
 const sequelize = new Sequelize('coworkinglapiscine', 'root', '', {
     host: 'localhost',
@@ -16,7 +17,6 @@ const Users = UserModel(sequelize, DataTypes)
 const RolesModel = require('../Models/rolesModel')
 const BddRoles = RolesModel(sequelize, DataTypes)
 const RoleAccess = require('./roles.json');
-const rolesModel = require('../Models/rolesModel');
 
 Users.belongsTo(BddRoles, {
     foreignKey: "roles",
@@ -60,12 +60,15 @@ sequelize.authenticate()
             })
 
             for (let index = 0; index < 20; index++) {
-                Users.create({
-                    username : `UserNumber${index+1}`,
-                    phone : 111111111 + index *15,
-                    adress : `${Math.floor(Math.random()*500)} rue moncuc`,
-                    password : `jhfJHKFDnfjnc554?`,
-                    roles : 3
+                bcrypt.hash(`oui`, 10)
+                    .then((hash)=>{                    
+                    return Users.create({
+                        username : `UserNumber${index+1}`,
+                        phone : 111111111 + index *15,
+                        adress : `${Math.floor(Math.random()*500)} rue moncuc`,
+                        password : hash,
+                        roles : 3
+                    })
                 })
             }
     })

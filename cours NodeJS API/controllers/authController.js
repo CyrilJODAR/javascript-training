@@ -44,12 +44,11 @@ exports.logIn = ((req, res) =>{
         .catch(()=>{
             res.status(404).json({message : 'no user found with this username or password'})
         })
-
 })
 
 exports.protect = ((req, res, next)=>{
     if(!req.headers.authorization){
-        return res.status(401).json({ message : `not authenticated. Please log in`}) // redirect to log in
+        return res.status(401).json({ message : `not authenticated. Please log in`}) // need to redirect to log in
     }
     const token = req.headers.authorization.split(' ')[1]
     if(token) {
@@ -63,6 +62,6 @@ exports.protect = ((req, res, next)=>{
             res.status(403).json({message : `Token invalid or expired. log back in to generate again`})
         }
     } else {
-        res.json({message: 'access denied, not enough rights'})
+        res.status(401).json({message: 'access denied, not enough rights'})
     }
 })

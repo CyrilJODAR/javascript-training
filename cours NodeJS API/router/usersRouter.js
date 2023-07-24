@@ -16,5 +16,4 @@ router
     .get(authController.protect, userController.GetUserById)
     .put(authController.protect, userController.UpdateUserById)
     .delete(authController.protect, userController.DeleteUserById)
-
     module.exports = router

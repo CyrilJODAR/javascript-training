@@ -8,7 +8,7 @@ const morgan = require('morgan')
 const app = express()
 const port = 3001
 
-sequelize.initDatabase()
+// sequelize.initDatabase()
 
 app.use(express.json())
 app.use(morgan("dev"))

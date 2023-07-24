@@ -5,9 +5,9 @@ const bcrypt = require('bcrypt');
 exports.GetUsers = ((req, res)=>{
     Users.findAll({
     }).then((users)=>{
-        res.status(200).json({ message : users})
+        return res.status(200).json({ message : users})
     }).catch((error)=>{
-        res.status(400).json({ message : error.message})
+        return res.status(400).json({ message : error.message})
     })
 })
 
@@ -18,14 +18,15 @@ exports.GetUserById = ((req, res)=>{
             throw new Error(`ID not found`);
         }
         res.status(200).json({message: 'User Found', data : user})
-    }).catch((error)=>
-    res.status(404).json({ message: `${error}`})
-    )
+    }).catch((error)=>{
+        return res.status(404).json({ message: `${error}`})
+    })
 })
 
 exports.UpdateUserById = ((req, res)=>{
     Users.findByPk(req.params.id)
     .then((user)=>{
+        console.log(req.username)
         if(!user){
             throw new Error(`ID not found`);
         } else {
@@ -36,9 +37,9 @@ exports.UpdateUserById = ((req, res)=>{
         }
     }).catch((error)=>{
         if(error instanceof ValidationError){
-            res.status(400).json({ message: error.message})
+            return res.status(400).json({ message: error.message})
         } else{
-            res.status(500).json({ message: `ERROR : There was a problem with the server : ${error.message}`})
+            return res.status(500).json({ message: `ERROR : There was a problem with the server : ${error.message}`})
         }    
     })
 })
@@ -51,10 +52,10 @@ exports.DeleteUserById = ((req, res)=>{
         } else {
             return user.destroy()
             .then((user)=>{
-                res.status(200).json({message: 'User deleted', data : user})
+                return res.status(200).json({message: 'User deleted', data : user})
             })
         }
-    }).catch((error)=>
-    res.status(404).json({ message: `${error}`})
-    )
+    }).catch((error)=>{
+        return res.status(404).json({ message: `${error}`})
+    })
 })

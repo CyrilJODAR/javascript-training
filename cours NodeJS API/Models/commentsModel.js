@@ -5,13 +5,17 @@ module.exports = (Sequelize, DataTypes) => {
             primaryKey : true,
             autoIncrement: true
           },
-        comment : {
+        content : {
             type : DataTypes.STRING,
             allowNull: false,
         },
         rating : {
             type : DataTypes.INTEGER,
             allowNull: false,
+            validate: {
+                min:1,
+                max:5,
+            }
         }
     }, {
         freezeTableName: true,

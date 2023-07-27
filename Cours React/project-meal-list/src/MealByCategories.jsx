@@ -6,8 +6,7 @@ const MealByCategories = ({ MealClickedCategory }) =>{
                     <h1>{meal.strMeal}</h1>
                     <img src={meal.strMealThumb} alt={meal.strMeal} className="imgMeal"></img>
                 </div>
-                )
-                )
+                ))
             }
         </>
     )

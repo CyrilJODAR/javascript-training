@@ -63,7 +63,7 @@ const MealCategoryList = () =>{
               </div>
                 { !loaderCategoryMeals ?
                 (CategoryCheck === category.strCategory &&
-                    <section>
+                    <section className="cardMealSection">
                         <MealByCategories MealClickedCategory={MealClickedCategory}/>
                     </section>
                     ) : <h2>loading ...</h2>

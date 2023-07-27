@@ -113,3 +113,21 @@ a:visited{
   background-color: greenyellow;
   border-radius: 10px;
 }
+
+.cardMealSection {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.cardMealSection h1{
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto;
+}
+.cardMeal{
+  text-align: center;
+}

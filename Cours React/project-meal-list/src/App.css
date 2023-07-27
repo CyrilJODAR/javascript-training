@@ -19,6 +19,7 @@
 }
 body{
   min-height: 100vh;
+  margin: 0;
 }
 .myHeader{
   height: 100px;
@@ -34,7 +35,6 @@ body{
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: fixed;
   bottom: 0;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
@@ -51,16 +51,19 @@ body{
 .myMain{
   display: flex;
   justify-content: space-around;
-  align-items: center;
   min-height: 100%;
-  margin-top: 50px;
+  flex-direction: column;
+  margin: 50px;
 }
 .myMain img{
-  border-radius: 50px
+  border-radius: 50px;
+  height: 200px;
 }
 .myMain>section{
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
 }
 a{
   text-decoration: none;
@@ -79,4 +82,34 @@ a:visited{
 .myHeader>ul>li:first-child a{
   height: 80px;
   display: inline-block;
+}
+.searchBar{
+  padding: 5px 20px;
+  margin: 20px;
+  border-radius: 5px;
+}
+.cardCategory{
+  display: flex;
+  flex-direction: column;
+}
+
+.cardCategoryHeader{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.cardCategoryHeader img{
+  height: 150px;
+  object-fit: scale-down;
+}
+
+.cardCategoryHeader h1, .cardCategoryHeader img{
+  width: 30%;
+}
+.cardCategoryHeader a{
+  padding: 10px 25px;
+  background-color: greenyellow;
+  border-radius: 10px;
 }

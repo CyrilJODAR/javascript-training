@@ -1,7 +1,8 @@
 import './App.css';
 import Footer from './Footer';
 import Header from './Header';
-import MealList from './MealList';
+import MealCategoryList from './MealCategoryList';
+// import MealList from './MealList';
 
 
 
@@ -9,7 +10,10 @@ function App() {
   return (
     <>
       <Header />
-      <MealList />
+      <main className="myMain">
+        {/* <MealList /> */}
+        <MealCategoryList />
+      </main>
       <Footer />
     </>
   )

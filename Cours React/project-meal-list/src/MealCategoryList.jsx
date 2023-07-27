@@ -10,12 +10,14 @@ const MealCategoryList = () =>{
     const [loaderCategoryMeals, setLoaderCategoryMeals] = useState(false)
 
     const HandleClickCategoryMeals = async (clickedCategory) =>{
-        try{
-            if(isShown === false){
+        
+        if(isShown === false){
             setLoaderCategoryMeals(true)
-            }
+        }
+        try{
             const resultMealCategoriesClick = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${clickedCategory}`)
             const responseJson = await resultMealCategoriesClick.json()
+            
             setMealClickedCategory(responseJson.meals)
             if(isShown === false){
                 setCategoryCheck(clickedCategory)
@@ -28,20 +30,21 @@ const MealCategoryList = () =>{
         } catch (error) {
             // const msgError = error
         }
+        setLoaderCategoryMeals(false)
     }
 
     const fetchMealCategories = async () =>{
+        setLoader(true)
         try{
-            setLoader(true)
 
             const resultMealCategories = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
             const responseJson = await resultMealCategories.json()
     
             setMealCategories(responseJson.categories)
-            setLoader(false)
         } catch (error) {
             // const msgError = error
         }
+        setLoader(false)
     }
 
     useEffect(() =>{
@@ -61,13 +64,8 @@ const MealCategoryList = () =>{
                 </div>
                 <p>{category.strCategoryDescription}</p>
               </div>
-                { !loaderCategoryMeals ?
-                (CategoryCheck === category.strCategory &&
-                    <section className="cardMealSection">
-                        <MealByCategories MealClickedCategory={MealClickedCategory}/>
-                    </section>
-                    ) : <h2>loading ...</h2>
-                }
+              {CategoryCheck === category.strCategory &&
+               <MealByCategories loaderCategoryMeals={loaderCategoryMeals} MealClickedCategory={MealClickedCategory}/>}
             </>
             )
           ) : <h2>Loading ...</h2>

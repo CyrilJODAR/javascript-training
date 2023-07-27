@@ -1,9 +1,15 @@
 const CocktailSingle = ({cocktail}) =>{
+      let myIngredients = []
+      for (const key in cocktail) {
+            if (key.includes('strIngredient') && cocktail[key] != null){
+                  myIngredients.push(cocktail[key]) 
+            }
+      }
       return(
-            <li key={cocktail.id} className="CocktailCard">
-                <h3>{cocktail.name}</h3>
-                {cocktail.ingredients.map(cocktailIngredients => <p>{cocktailIngredients}</p>)}
-                <h4>{cocktail.price} $</h4>
+            <li key={cocktail.idDrink} className="CocktailCard">
+                <h3>{cocktail.strDrink}</h3>
+                {myIngredients.map(cocktailIngredients => <p>{cocktailIngredients}</p>)}
+                  <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
             </li>
       )
 }

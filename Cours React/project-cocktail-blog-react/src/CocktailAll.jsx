@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import CocktailSingle from "./CocktailSingle"
+import CocktailRandom from "./CocktailRandom"
 
 const CocktailAll = () =>{
 
@@ -40,10 +41,7 @@ const CocktailAll = () =>{
             <p> Voici un cocktail random :</p>
             <a href="#blank" onClick={fetchRandomCocktail}>random cocktail</a>
             <ul>
-                <li key={myRandomCocktail.idDrink} className="CocktailCard">
-                    <h3>{myRandomCocktail.strDrink}</h3>
-                    <img src={myRandomCocktail.strDrinkThumb} alt={myRandomCocktail.strDrink} />
-                </li>
+                    <CocktailRandom myRandomCocktail={myRandomCocktail}/>
             </ul>
         </div>
     )

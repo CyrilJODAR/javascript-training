@@ -22,7 +22,7 @@ const SearchResult = () =>{
     
     useEffect(()=>{
         FetchSearchedCocktails()
-    })
+    },[mySearch])
 
     return(
         <>

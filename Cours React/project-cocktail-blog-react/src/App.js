@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import Homepage from './pages/Homepage';
+import SearchResult from './pages/SearchResult';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Homepage/>} />
             <Route path="/cocktails" element={<CocktailAll/>} /> 
             <Route path="/randomCocktails" element={<CocktailRandom />} />
+            <Route path="/searchedCocktails" element={<SearchResult/>} />
       </Routes>
     </BrowserRouter>
     </>

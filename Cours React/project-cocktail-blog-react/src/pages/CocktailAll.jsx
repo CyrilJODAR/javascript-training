@@ -24,14 +24,19 @@ const CocktailAll = () =>{
     return(
         <>
             <Header />
-            <div className="containerCocktailAll">
-                <p> Voici tout les Cocktail visible sur notre Blog :</p>
-                <ul>
-                    {myCocktails.map(cocktail => (
-                        <CocktailSingle cocktail={cocktail}/>
-                        ))}
-                </ul>
-            </div>
+            <main className='myMain'>
+                <section className='sectionCocktails'>
+                    <div className="containerCocktailAll">
+                        <p> Voici tout les Cocktails visible sur notre Blog :</p>
+                        <ul>
+                            {myCocktails != null &&
+                            myCocktails.map(cocktail => (
+                                <CocktailSingle cocktail={cocktail}/>
+                                ))}
+                        </ul>
+                    </div>
+                </section>
+            </main>
             <Footer />
         </>
     )

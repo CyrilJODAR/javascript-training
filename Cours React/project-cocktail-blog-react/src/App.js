@@ -15,7 +15,9 @@ function App() {
     <BrowserRouter>
       <Routes>
             <Route path="/" element={<Homepage/>} />
-            <Route path="/cocktails" element={<CocktailAll/>} /> 
+            <Route path="/cocktails" element={<CocktailAll/>} />
+            {/* <Route path="/cocktails/detail/:id" element={<CocktailDetails/>}
+            === >>  const { id } = useParams()/>          */}
             <Route path="/randomCocktails" element={<CocktailRandom />} />
             <Route path="/searchedCocktails" element={<SearchResult/>} />
       </Routes>

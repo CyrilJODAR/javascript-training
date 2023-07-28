@@ -1,0 +1,3 @@
+components used in pages
+
+ex: header

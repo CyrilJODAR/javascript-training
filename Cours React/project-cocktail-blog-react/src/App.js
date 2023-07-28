@@ -1,19 +1,23 @@
 import './App.css';
-import CocktailAll from './CocktailAll';
-import Footer from './Footer';
-import Header from './Header';
-
+import CocktailAll from './pages/CocktailAll';
+import CocktailRandom from './pages/CocktailRandom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Homepage from './pages/Homepage';
 
 function App() {
   return (
     <>
-      <Header/>
-      <main className='myMain'>
-        <section className='sectionCocktails'>
-          <CocktailAll/>
-        </section>
-      </main>
-      <Footer />
+    <BrowserRouter>
+      <Routes>
+            <Route path="/" element={<Homepage/>} />
+            <Route path="/cocktails" element={<CocktailAll/>} /> 
+            <Route path="/randomCocktails" element={<CocktailRandom />} />
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }
